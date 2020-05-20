@@ -59,7 +59,14 @@ argument and environment variable parsing.
 ```
 
 Example of how to run simulator from a local machine.
-    `python mysim.py --accesskey <ACCESSKEY> --api-host <API-HOST> --workspace <WORKSPACE>`
+    `python mysim.py --workspace <WORKSPACE> --accesskey <ACCESSKEY>`
+
+You can also set these in your unix shell with:
+```sh
+export SIM_ACCESS_KEY=<your-access-key>
+export SIM_WORKSPACE=<your-workspace>
+export SIM_API_HOST=<your-api-host>
+```
 
 When a simulator is run on the platform, the environment variables will be set and picked up by ServiceConfig.
 
