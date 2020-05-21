@@ -20,7 +20,7 @@ from .simulator_protocol import (
     SimulatorEventType,
     SimulatorInterface,
 )
-from .stargate_client import StargateClient
+from .simulator_client import SimulatorClient
 
 log = Logger()
 
@@ -32,7 +32,7 @@ class SimulatorSession:
     def __init__(self, config: ServiceConfig):
         self._last_event = None
         self._config = config
-        self._client = StargateClient(config)
+        self._client = SimulatorClient(config)
 
     # interface and state
     def get_state(self) -> Schema:
