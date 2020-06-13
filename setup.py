@@ -12,7 +12,7 @@ setup(
     name="bonsai3",
     version=version['__version__'],
     description="Simulator interface library for Bonsai AI platform v3",
-    long_description=open('README.rst').read(),
+    long_description=open('README.md').read(),
     url="https://bons.ai",
     author="Microsoft, Inc.",
     author_email='opensource@bons.ai',
