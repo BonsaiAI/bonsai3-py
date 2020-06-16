@@ -23,26 +23,26 @@ Example:
 
     class SimModel(SimulatorSession):
         def get_state(self) -> Schema:
-        """ Called to retrieve the current state of the simulator. """
+            """ Called to retrieve the current state of the simulator. """
             pass
 
         def get_interface(self) -> SimulatorInterface:
-        """ Called to retrieve the simulator interface during registration. """
+            """ Called to retrieve the simulator interface during registration. """
             pass
         
-        def halted(self) -> bool
+        def halted(self) -> bool:
             """
-            Should return weather the episode is halted, and
+            Should return whether the episode is halted, and
             no further action will result in a state.
             """
             pass
 
         def episode_start(self, config: Schema):
-        """ Called at the start of each episode """
+            """ Called at the start of each episode """
             pass
         
         def episode_step(self, action: Schema):
-        """ Called for each step of the episode """
+            """ Called for each step of the episode """
             pass
 ```
 
