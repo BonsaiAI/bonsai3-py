@@ -58,6 +58,11 @@ _RETRY_TIMEOUT_HELP = \
     retry forever. The default is set to 300 seconds (5 minutes).
     """
 
+_PROXY_HELP = \
+    """
+    File that contains the proxies to add to the request
+    """
+
 class ServiceConfig:
     """Configuration information needed to connect to the service."""
     server = ''  # type: str
@@ -67,6 +72,8 @@ class ServiceConfig:
 
     retry_timeout_seconds = 300  # type: int
     network_timeout_seconds = 60  # type: int
+
+    proxies = {}
 
     def __init__(self,
                  workspace: str='',
@@ -102,6 +109,7 @@ class ServiceConfig:
         parser.add_argument('--workspace', help=_WORKSPACE_HELP)
         parser.add_argument('--sim-context', help=_SIM_CONTEXT_HELP)
         parser.add_argument('--log', nargs='+', help=_LOG_HELP)
+        parser.add_argument('--proxy', help=_PROXY_HELP)
         parser.add_argument('--verbose', action='store_true',
                             help=_VERBOSE_HELP)
         parser.add_argument('--retry-timeout', type=int,
@@ -133,6 +141,10 @@ class ServiceConfig:
         if args.verbose:
             self.verbose = args.verbose
             log.set_enable_all(args.verbose)
+
+        if args.proxy:
+            self.proxies = json.loads(args.proxy)
+            print(self.proxies)
 
         if args.retry_timeout is not None:
             self.retry_timeout_seconds = args.retry_timeout

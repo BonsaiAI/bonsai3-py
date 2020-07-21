@@ -71,6 +71,8 @@ class SimulatorClient:
                 config.server
             ), "Environment variable SIM_API_HOST is unset or server is empty."
 
+            log.debug("Proxies: {}".format(config.proxies))
+
             # Register request
             if isinstance(payload, SimulatorInterface):
                 reg_url = "{}/v2/workspaces/{}/simulatorSessions".format(
@@ -78,6 +80,7 @@ class SimulatorClient:
                 )
                 log.debug("Sending registration to {}".format(reg_url))
                 log.debug("Registration payload: {}".format(jsons.dumps(payload)))
+                
                 res = self._session.post(
                     reg_url,
                     json=jsons.loads(payload.json),
@@ -85,6 +88,7 @@ class SimulatorClient:
                         "Authorization": config.access_key,
                         "Content-type": "application/json",
                     },
+                    proxies = self._config.proxies,
                     timeout=self._config.network_timeout_seconds,
                 )
                 log.debug("Response to registration received.")
@@ -100,6 +104,7 @@ class SimulatorClient:
                         "Authorization": config.access_key,
                         "Content-type": "application/json",
                     },
+                    proxies = self._config.proxies,
                     timeout=self._config.network_timeout_seconds,
                 )
                 log.network("Response to get next event request received.")
